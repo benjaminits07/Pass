@@ -1,0 +1,3 @@
+wingz_pass_homepage:
+    path:     /
+    defaults: { _controller: wingzPassBundle:Default:index }
