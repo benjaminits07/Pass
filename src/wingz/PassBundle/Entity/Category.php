@@ -28,7 +28,6 @@ class Category
      */
     private $name;
 
-
     /**
      * Get id
      *
@@ -63,4 +62,3 @@ class Category
         return $this->name;
     }
 }
-

@@ -42,6 +42,10 @@ class Clients
      */
     private $date;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="wingz\PassBundle\Entity\Category", cascade={"persist"})
+     */
+    private $categories;
 
     /**
      * Get id
@@ -124,5 +128,45 @@ class Clients
     {
         return $this->date;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add category
+     *
+     * @param \wingz\PassBundle\Entity\Category $category
+     *
+     * @return Clients
+     */
+    public function addCategory(\wingz\PassBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \wingz\PassBundle\Entity\Category $category
+     */
+    public function removeCategory(\wingz\PassBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+}

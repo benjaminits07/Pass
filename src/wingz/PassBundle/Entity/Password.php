@@ -49,6 +49,11 @@ class Password
      */
     private $url;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="wingz\PassBundle\Entity\Clients")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $client;
 
     /**
      * Get id
@@ -155,5 +160,28 @@ class Password
     {
         return $this->url;
     }
-}
 
+    /**
+     * Set client
+     *
+     * @param \wingz\PassBundle\Entity\Clients $client
+     *
+     * @return Password
+     */
+    public function setClient(\wingz\PassBundle\Entity\Clients $client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \wingz\PassBundle\Entity\Clients
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+}
