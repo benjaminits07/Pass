@@ -1,0 +1,8 @@
+<nav>
+    <ul>
+        <li><a href="{{ path('homepage') }}">Home</a></li>
+        {% for client in clients %}
+            <li><a href="{{ path('show_password', {'id':client.id, 'slug': client.slug}) }}">{{ client.name }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

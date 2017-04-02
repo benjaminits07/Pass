@@ -3,11 +3,37 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block header %}
+            <header>
+                {{ render(controller('AppBundle:Layout:menu', {'route': app.request.attributes.get('_route')})) }}
+            </header>
+        {% endblock %}
+
+        <div class="hey" style="text-align:right;padding: 10px 20px 10px;">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-sm btn-default"href="{{ path('easyadmin') }}" style="font-size:13px;margin-right:10px">Back Office</a>
+            {% endif %}
+            <a class="btn btn-sm btn-danger"href="{{ path('fos_user_security_logout') }}" style="font-size:13px">Logout</a>
+        </div>
+
+        {% block body %}
+            <!-- Chargé depuis les templates enfants -->
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/googlemap/markercluster.js') }}"></script>
+            <script src="{{ asset('js/script.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
