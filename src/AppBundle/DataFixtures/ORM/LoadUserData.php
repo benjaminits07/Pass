@@ -32,9 +32,10 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $userAdmin->setEnabled(true);
         $manager->persist($userAdmin);
 
+        $userStage = new User();
         $userStage->setUsername('stage');
         $userStage->setPassword($encoder->encodePassword($userStage, 'stage'));
-        $userStage->setEmail('benjamin.denie@gmail.com');
+        $userStage->setEmail('stage');
         $userStage->setRoles(array('ROLE_USER'));
         $userStage->setEnabled(false);
         $manager->persist($userStage);
